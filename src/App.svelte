@@ -1,1 +1,0 @@
-<h1 class="text-center text-green-500 font-bold text-3xl">Szia magyarerik!</h1>

@@ -1,5 +1,5 @@
-> [!WARNING]
-> A Tauri átírás egy teszt, amelyből később lehet, hogy lesz valami de az is lehet, hogy nem!
+> [!NOTE]
+> Az Ampix App jelenleg munkálatok alatt áll.
 
 # Ampix App
 
