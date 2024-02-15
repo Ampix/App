@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./src/**/*.{html,ts,svelte}', 'index.html'],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
+  content: ["./src/**/*.{ts,vue}","index.html"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 }
+
