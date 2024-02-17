@@ -2,15 +2,9 @@
 </script>
 
 <template>
-  <h1 class="text-green-600">Cső</h1>
+  <div class="flex h-screen">
+    <div class="m-auto">
+      <h1 class="text-green-600 text-3xl">Szia Bálint!</h1>
+    </div>
+  </div>
 </template>
-
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-</style>
