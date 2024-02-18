@@ -36,7 +36,7 @@ let page = 'welcome'
             <button
                 class="text-white bg-blue-600 text-4xl py-1 px-3 rounded-xl font-bold m-2 hover:bg-blue-400 hover:text-gray-100 transition-all"
             >
-                Kezdjük
+                Kezdjük!
             </button>
         </div>
     </div>
