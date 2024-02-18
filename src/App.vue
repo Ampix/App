@@ -4,7 +4,7 @@ let page = 'welcome'
 
 <template>
     <div class="grid 2xl:grid-cols-8 grid-cols-4">
-        <div class="bg-slate-500 h-screen grid">
+        <div class="bg-blue-800 h-screen grid">
             <div class="flex flex-col justify-center items-center">
                 <img
                     src="https://cdn.discordapp.com/avatars/440489260345458690/c85d6d2424e4266fb4d3196acdeb422e?size=1024"
@@ -16,10 +16,9 @@ let page = 'welcome'
                 </h1>
             </div>
             <div
-                class="text-white text-3xl text-center child:py-5 child:bg-slate-600 flex flex-col justify-end child:mb-5 child:cursor-pointer font-bold child-hover:bg-slate-400 child-hover:-translate-y-2 child:mx-3 child:rounded-xl child:drop-shadow-xl child:transition-all child:duration-200"
+                class="text-white text-3xl text-center child:py-5 child:bg-blue-600 flex flex-col justify-end child:mb-5 child:cursor-pointer font-bold child-hover:bg-blue-500 child-hover:-translate-y-2 child:mx-3 child:rounded-xl child:drop-shadow-xl child:transition-all child:duration-200"
             >
                 <button>Kezdőlap</button>
-                <button>Hírek</button>
                 <button>Minecraft</button>
                 <button>Beállítások</button>
             </div>
@@ -34,7 +33,7 @@ let page = 'welcome'
                 állítanod!
             </h2>
             <button
-                class="text-white bg-blue-600 text-4xl py-1 px-3 rounded-xl font-bold m-2 hover:bg-blue-400 hover:text-gray-100 transition-all"
+                class="text-white bg-blue-600 text-4xl py-1 px-3 rounded-xl font-bold m-2 hover:bg-blue-500 hover:text-gray-100 transition-all"
             >
                 Kezdjük!
             </button>
