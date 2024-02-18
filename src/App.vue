@@ -9,7 +9,7 @@ let page = 'welcome'
                 <img
                     src="https://cdn.discordapp.com/avatars/440489260345458690/c85d6d2424e4266fb4d3196acdeb422e?size=1024"
                     alt="Profpic"
-                    class="rounded-full w-fit h-fit px-5 drop-shadow-xl mt-3"
+                    class="rounded-full w-fit h-fit px-5 drop-shadow-xl mt-3 pointer-events-none"
                 />
                 <h1 class="text-white font-bold text-3xl drop-shadow-xl">
                     HVCsano
