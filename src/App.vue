@@ -1,5 +1,6 @@
 <script setup lang="ts">
-let page = 'welcome'
+import { ref } from 'vue'
+let page = ref('welcome')
 </script>
 
 <template>
@@ -18,7 +19,7 @@ let page = 'welcome'
             <div
                 class="text-white text-3xl text-center child:py-5 child:bg-blue-600 flex flex-col justify-end child:mb-5 child:cursor-pointer font-bold child-hover:bg-blue-500 child-hover:-translate-y-2 child:mx-3 child:rounded-xl child:drop-shadow-xl child:transition-all child:duration-200"
             >
-                <button>Kezdőlap</button>
+                <button v-on:click="() => (page = 'home')">Kezdőlap</button>
                 <button>Minecraft</button>
                 <button>Beállítások</button>
             </div>
@@ -38,5 +39,6 @@ let page = 'welcome'
                 Kezdjük!
             </button>
         </div>
+        <div v-if="page === 'home'"></div>
     </div>
 </template>
