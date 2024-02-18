@@ -1,6 +1,6 @@
 [package]
 name = "ampix-app"
-version = "1.0.1"
+version = "0.0.0"
 description = "Ampix App"
 authors = ["HVCsano"]
 edition = "2021"
