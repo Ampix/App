@@ -21,8 +21,12 @@
     "build:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
+    "@azure/msal-node": "^2.6.6",
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "@xmcl/core": "^2.13.0",
+    "@xmcl/user": "^4.2.0",
+    "axios": "^1.6.8",
     "electron-updater": "^6.1.7"
   },
   "devDependencies": {
@@ -34,8 +38,6 @@
     "electron": "^28.2.0",
     "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-svelte": "^2.35.1",
     "prettier": "^3.2.4",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.9",
