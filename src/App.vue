@@ -1,6 +1,19 @@
 <script setup lang="ts">
+import { createDir, exists } from '@tauri-apps/api/fs'
+import { appDataDir } from '@tauri-apps/api/path'
 import { ref } from 'vue'
 let page = ref('welcome')
+
+async function cucc() {
+    const dir = await appDataDir()
+    if (await exists(dir)) {
+        console.log('van')
+    } else {
+        createDir(dir)
+    }
+}
+
+cucc()
 </script>
 
 <template>

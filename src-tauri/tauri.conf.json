@@ -40,7 +40,7 @@
                 "removeDir": true,
                 "removeFile": true,
                 "renameFile": true,
-                "scope": ["$APP/*", "$DOWNLOAD/*"],
+                "scope": ["$APPDATA", "$DOWNLOAD"],
                 "writeFile": true
             },
             "globalShortcut": {
@@ -55,7 +55,7 @@
                 "all": false
             },
             "os": {
-                "all": false
+                "all": true
             },
             "path": {
                 "all": true
