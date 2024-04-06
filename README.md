@@ -1,34 +1,6 @@
-# ampix-app
+> [!NOTE]
+> Az Ampix App jelenleg még munkálatok alatt áll.
 
-An Electron application with Svelte and TypeScript
+# Ampix App
 
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
-
-## Project Setup
-
-### Install
-
-```bash
-$ npm install
-```
-
-### Development
-
-```bash
-$ npm run dev
-```
-
-### Build
-
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
-```
+Az Ampix App az [Ampix Updater](https://github.com/Ampix/Updater) új verziója mely már önmagában képes működni: nem kell külön launcher, szenvedni forge/fabric verzióval, java verzióval. Csak rányomsz hogy telepítés majd játék és már bent is vagy a Minecraft csodás világában

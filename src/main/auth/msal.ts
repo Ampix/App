@@ -61,7 +61,7 @@ export async function initAuth(): Promise<AuthenticationResult | undefined> {
 
 const config = {
     auth: {
-        clientId: 'c6513696-a2b9-481c-bd15-aaffabe48c94',
+        clientId: 'a585dcff-b44d-466f-a380-977f66f8daa7',
         authority: 'https://login.microsoftonline.com/consumers',
     },
     system: {
