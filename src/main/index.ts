@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './auth'
-import { setupMCAuth } from './auth'
+import { installMC } from './install'
 
 function createWindow(): void {
     // Create the browser window.
@@ -53,7 +53,7 @@ app.whenReady().then(() => {
 
     // IPC test
     ipcMain.on('ping', async () => {
-        console.log(await setupMCAuth())
+        installMC()
     })
 
     createWindow()

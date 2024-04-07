@@ -14,7 +14,6 @@ export async function initAuth(): Promise<AuthenticationResult | undefined> {
         const authWindow = new BrowserWindow({
             width: 500,
             height: 500,
-            title: 'Kuki',
             show: true,
             autoHideMenuBar: true,
         })

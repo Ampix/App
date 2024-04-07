@@ -15,18 +15,26 @@ export async function setupMCAuth() {
             liveXstsResponse.DisplayClaims.xui[0].uhs,
             liveXstsResponse.Token
         )
-
         // you can use the xstsResponse to get the minecraft access token
         const mcResponse = await authenticator.loginMinecraftWithXBox(
             minecraftXstsResponse.DisplayClaims.xui[0].uhs,
             minecraftXstsResponse.Token
         )
-
-        // the accessToken is the common minecraft token we want!
         const accessToken: string = mcResponse.access_token
-        const username = mcResponse.username
-        const expire = mcResponse.expires_in // in seconds
-        return { xboxGameProfile, accessToken, username, expire }
+        const expire = mcResponse.expires_in
+
+        const r998 = await fetch(
+            'https://api.minecraftservices.com/minecraft/profile',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        ) // in seconds
+        const { id, name } = await r998.json()
+        return { xboxGameProfile, accessToken, username: name, expire, id }
     }
     return undefined
 }
