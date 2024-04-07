@@ -1,26 +1,25 @@
 <script lang="ts">
-  import Versions from './components/Versions.svelte'
-  import electronLogo from './assets/electron.svg'
-
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+    let text = 'Frissítés keresése'
+    window.electron.ipcRenderer.on('update-van', () => {
+        text = 'Frissítés letöltésének megkezdése'
+    })
+    window.electron.ipcRenderer.on('update-tölt', (_ev, arg) => {
+        text = `Frissítés letöltése ${arg}%`
+    })
+    window.electron.ipcRenderer.on('update-nincs', () => {
+        text = 'Nincs frissítés'
+    })
+    window.electron.ipcRenderer.on('setloadtext', (_ev, arg) => {
+        text = arg
+    })
 </script>
 
-<img alt="logo" class="logo" src={electronLogo} />
-<div class="creator">Powered by electron-vite</div>
-<div class="text">
-  Build an Electron app with
-  <span class="svelte">Svelte</span>
-  and
-  <span class="ts">TypeScript</span>
+<div class="h-screen flex">
+    <div class="m-auto text-center">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h1 class="text-white font-bold">{text}</h1>
+    </div>
 </div>
-<p class="tip">Please try pressing <code>F12</code> to open the devTool</p>
-<div class="actions">
-  <div class="action">
-    <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">Documentation</a>
-  </div>
-  <div class="action">
-    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions a11y-missing-attribute-->
-    <a target="_blank" rel="noreferrer" on:click={ipcHandle}>Send IPC</a>
-  </div>
-</div>
-<Versions />

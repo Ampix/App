@@ -1,26 +1,30 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'node:path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import './auth'
-import { installMC, setup } from './install'
+import { initConfig } from './config'
+import { getAutoUpdater } from './updater'
+
+const updater = getAutoUpdater()
+
+export let mainWindow: BrowserWindow | undefined
 
 function createWindow(): void {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 900,
         height: 670,
         show: false,
         autoHideMenuBar: true,
-        ...(process.platform === 'linux' ? { icon } : {}),
+        icon,
         webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false,
         },
     })
 
-    mainWindow.on('ready-to-show', () => {
-        mainWindow.show()
+    mainWindow?.on('ready-to-show', () => {
+        mainWindow?.show()
     })
 
     mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -50,15 +54,28 @@ app.whenReady().then(() => {
     app.on('browser-window-created', (_, window) => {
         optimizer.watchWindowShortcuts(window)
     })
-
-    // IPC test
-    ipcMain.on('ping', async () => {
-        // installMC()
-        setup()
-    })
-
     createWindow()
-
+    updater.checkForUpdatesAndNotify()
+    updater.on('update-not-available', () => {
+        mainWindow?.webContents.send('update-nincs')
+        setTimeout(() => {
+            initConfig()
+        }, 250)
+    })
+    updater.on('update-available', () => {
+        mainWindow?.webContents.send('update-van')
+    })
+    updater.on('download-progress', (ev) => {
+        mainWindow?.webContents.send('update-tölt', Math.floor(ev.percent))
+    })
+    updater.on('update-downloaded', () => {
+        updater.quitAndInstall()
+    })
+    if (!app.isPackaged) {
+        setTimeout(() => {
+            initConfig()
+        }, 1000)
+    }
     app.on('activate', () => {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
