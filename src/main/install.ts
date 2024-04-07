@@ -7,10 +7,13 @@ import {
     type MinecraftLocation,
     type ResolvedVersion,
 } from '@xmcl/core'
-import type { ChildProcess } from 'node:child_process'
+import { exec, type ChildProcess } from 'node:child_process'
+import fs from 'node:fs'
+import path from 'node:path'
+import https from 'node:https'
 
 export const minecraftLocation: MinecraftLocation =
-    'C:\\Users\\hvcsa\\AppData\\Roaming\\.ampixapp\\mc'
+    'C:\\Users\\hvcsa\\AppData\\Roaming\\.ampixapp'
 
 export async function installMC() {
     const list: MinecraftVersion[] = (await getVersionList()).versions
@@ -47,8 +50,60 @@ export async function launchMC() {
             id: auth?.id,
             name: auth?.username,
         },
-        javaPath:
-            'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.8.101-hotspot\\bin\\javaw.exe',
+        server: {
+            ip: 'hypixel.net',
+            port: 25565,
+        },
+        javaPath: path.join(
+            String(minecraftLocation),
+            '/java/17/bin/javaw.exe'
+        ),
         version: '1.18.2',
     })
+}
+
+function setupJava() {
+    if (!fs.existsSync(path.join(String(minecraftLocation), '/java')))
+        fs.mkdirSync(path.join(String(minecraftLocation), '/java'))
+    if (!fs.existsSync(path.join(String(minecraftLocation), '/java/17')))
+        fs.mkdirSync(path.join(String(minecraftLocation), '/java/17'))
+
+    const file = fs.createWriteStream(
+        path.join(String(minecraftLocation), '/java/java17_install.msi')
+    )
+    const request = https.get(
+        'https://download.oracle.com/java/17/archive/jdk-17.0.10_windows-x64_bin.msi',
+        (res) => {
+            res.pipe(file)
+            file.on('finish', () => {
+                file.close()
+                exec(
+                    `msiexec /i java17_install.msi /passive INSTALLDIR="%CD%\\17"`,
+                    { cwd: path.join(String(minecraftLocation), '/java') },
+                    (err, stout, sterr) => {
+                        if (err) return console.error(err)
+                        if (sterr) return console.error(sterr)
+                        console.log(stout)
+                    }
+                ).on('close', () => {
+                    fs.rmSync(
+                        path.join(
+                            String(minecraftLocation),
+                            '/java/java17_install.msi'
+                        )
+                    )
+                })
+            })
+        }
+    )
+}
+
+export function setup() {
+    if (
+        !fs.existsSync(
+            path.join(String(minecraftLocation), '/java/17/bin/javaw.exe')
+        )
+    )
+        return setupJava()
+    launchMC()
 }
