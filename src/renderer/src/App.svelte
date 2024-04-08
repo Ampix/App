@@ -1,7 +1,7 @@
 <script lang="ts">
     let text = 'Frissítés keresése'
     let loadtext = true
-    let loading = false
+    let loading = true
     let data: { username: string; id: string } = {
         id: '2d27308ccd8a42b0badcbf6d5d2eb59c',
         username: 'HVCsano',
