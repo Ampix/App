@@ -101,6 +101,10 @@ function setupJava() {
 export async function checkJava() {
     if (!fs.existsSync(getConfig('/java/17/bin/javaw.exe'))) return setupJava()
     mainWindow?.webContents.send('setloadtext', 'Microsoft fiókba belépés')
-    await setupMCAuth()
+    const auth = await setupMCAuth()
+    mainWindow?.webContents.send('getdata', {
+        id: auth?.id,
+        username: auth?.username,
+    })
     mainWindow?.webContents.send('hideloadtext')
 }

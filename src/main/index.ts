@@ -14,6 +14,8 @@ function createWindow(): void {
     mainWindow = new BrowserWindow({
         width: 900,
         height: 670,
+        minHeight: 670,
+        minWidth: 900,
         show: false,
         autoHideMenuBar: true,
         icon,
@@ -73,7 +75,7 @@ app.whenReady().then(() => {
     })
     if (!app.isPackaged) {
         setTimeout(() => {
-            initConfig()
+            // initConfig()
         }, 1000)
     }
     app.on('activate', () => {
