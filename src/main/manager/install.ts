@@ -13,6 +13,7 @@ import fs from 'node:fs'
 import https from 'node:https'
 import { getConfig } from '../config'
 import { mainWindow } from '..'
+import { setupMCAuth } from '../auth'
 
 // export async function installMC(mc: string) {
 //     const list: MinecraftVersion[] = (await getVersionList()).versions
@@ -83,14 +84,23 @@ function setupJava() {
                         if (sterr) return console.error(sterr)
                         console.log(stout)
                     }
-                ).on('close', () => {
+                ).on('close', async () => {
                     fs.rmSync(getConfig('/java/java17_install.msi'))
+                    mainWindow?.webContents.send(
+                        'setloadtext',
+                        'Microsoft fiókba belépés'
+                    )
+                    await setupMCAuth()
+                    mainWindow?.webContents.send('hideloadtext')
                 })
             })
         }
     )
 }
 
-export function checkJava() {
+export async function checkJava() {
     if (!fs.existsSync(getConfig('/java/17/bin/javaw.exe'))) return setupJava()
+    mainWindow?.webContents.send('setloadtext', 'Microsoft fiókba belépés')
+    await setupMCAuth()
+    mainWindow?.webContents.send('hideloadtext')
 }

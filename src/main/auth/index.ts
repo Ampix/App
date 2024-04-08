@@ -1,5 +1,18 @@
-import { MicrosoftAuthenticator } from '@xmcl/user'
+import {
+    MicrosoftAuthenticator,
+    type XBoxGameProfileResponse,
+} from '@xmcl/user'
 import { initAuth } from './msal'
+
+export let MCAuth:
+    | undefined
+    | {
+          xboxGameProfile: XBoxGameProfileResponse
+          accessToken: string
+          username: string
+          expire: number
+          id: string
+      }
 
 export async function setupMCAuth() {
     const authenticator = new MicrosoftAuthenticator()
@@ -34,6 +47,13 @@ export async function setupMCAuth() {
             }
         ) // in seconds
         const { id, name } = await r998.json()
+        MCAuth = {
+            xboxGameProfile,
+            accessToken,
+            username: name as string,
+            expire,
+            id,
+        }
         return { xboxGameProfile, accessToken, username: name, expire, id }
     }
     return undefined

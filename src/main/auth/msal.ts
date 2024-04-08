@@ -1,6 +1,7 @@
 import msal from '@azure/msal-node'
 import { BrowserWindow, session } from 'electron'
 import type { AuthenticationResult } from '@azure/msal-node'
+import icon from '../../../resources/icon.png?asset'
 
 export async function initAuth(): Promise<AuthenticationResult | undefined> {
     return new Promise((resolve, reject) => {
@@ -15,6 +16,8 @@ export async function initAuth(): Promise<AuthenticationResult | undefined> {
             width: 500,
             height: 500,
             show: true,
+            icon,
+            title: 'Microsoft Bejelentkezés',
             autoHideMenuBar: true,
         })
         msalClient.getAuthCodeUrl(authCodeUrlParameters).then((val) => {

@@ -1,5 +1,6 @@
 <script lang="ts">
     let text = 'Frissítés keresése'
+    let loadtext = true
     window.electron.ipcRenderer.on('update-van', () => {
         text = 'Frissítés letöltésének megkezdése'
     })
@@ -12,6 +13,9 @@
     window.electron.ipcRenderer.on('setloadtext', (_ev, arg) => {
         text = arg
     })
+    window.electron.ipcRenderer.on('hideloadtext', () => {
+        loadtext = false
+    })
 </script>
 
 <div class="h-screen flex">
@@ -20,6 +24,8 @@
             <div></div>
             <div></div>
         </div>
-        <h1 class="text-white font-bold">{text}</h1>
+        {#if loadtext}
+            <h1 class="text-white font-bold">{text}</h1>
+        {/if}
     </div>
 </div>

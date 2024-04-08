@@ -1,6 +1,6 @@
 {
     "name": "ampix-app",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Az Ampix Updater új verziója",
     "main": "./out/main/index.js",
     "author": "HVCsano",
